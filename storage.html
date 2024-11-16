@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dom and Storage</title>
+    <style>
+      #loginform{
+        height: 500px;
+          background-color: rgb(99, 199, 86);
+          text-align: center;
+          padding-top: 250px;
+      }
+      input{
+        padding: 5px;
+        margin: 8px;
+        border-radius: 5px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" id="loginform">
+      <input type="text" name="username" id="username" placeholder="username"> <br>
+      <input type="email" name="email" id="eamil" placeholder="email" /> <br>
+      <input type="password" name="password" id="password" placeholder="password" /> <br>
+      <button type="submit">submit</button>
+    </form>
+    <p id="message">Hello!!</p>
+    <script>
+
+      document.getElementById("loginform").addEventListener("submit", (e) => {
+        e.preventDefault();
+        let user =document.getElementsByName("username")[0].value;
+        // console.log(user+ "from user");
+        let email = document.getElementsByName("email")[0].value;
+        // console.log(email+ "from user");
+        let password = document.getElementsByName("password")[0].value;
+        // console.log(password+ "form user");
+        localStorage.setItem("username","akhilapandhen");
+        let username =localStorage.getItem("username");
+        // console.log(username+ "from backend");
+        localStorage.setItem("email", "akhilapandhen@gmail.com");
+        let emails = localStorage.getItem("email");
+        // console.log(emails+ "from backend");
+        localStorage.setItem("passwords", "pandhen");
+        let passwords = localStorage.getItem("passwords");
+        // console.log(passwords+ "from backend");
+        let messages = document.getElementsByTagName("t")[0];
+        // console.log(messages);
+        if (email === emails && password === passwords && user===username) {
+          // console.log("Login Sucessful.....!!");
+          user="";
+          email = "";
+          password= "";
+          messages = "Login Sucessful.....!!";
+           window.open("http://www.flipkart.in","_blank")
+
+        } else if (email !== emails && password === passwords && user===username) {
+          user="";
+          email = "";
+          password = "";
+          messages.textContent = "Invalid Email....!!";
+          // console.log("Invalid email");
+        } else if (email === emails && password !== passwords && user===username) {
+          user="";
+          email = "";
+          password = "";
+          messages.textContent = "Invalid password....!!";
+          // console.log("Invalid password");
+        } else {
+          user="";
+          email.value = "";
+          password.value = "";
+          messages.textContent = "Invalid username....!!";
+          // console.log("Invalid Data");
+        }
+        // e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
